@@ -1,0 +1,29 @@
+# dependencies
+node_modules/
+frontend/node_modules/
+
+# build output
+dist/
+frontend/dist/
+
+# secrets & env
+.env
+.env.*
+*.pem
+*.key
+frontend/.env
+frontend/.env.*
+
+# local wallet / burner material
+*burner*
+*private*key*
+
+# os / editor
+.DS_Store
+*.log
+.vscode/
+.idea/
+
+# python
+__pycache__/
+*.pyc
