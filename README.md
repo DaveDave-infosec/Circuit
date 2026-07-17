@@ -35,8 +35,8 @@ Whoever runs a centralised backend could be the attacker, so a single reviewer c
 
 | Contract | Address | Role |
 |---|---|---|
-| CircuitExecutor | `0xd8d0A423992D90fc2521B846d5ED83C1294B280b` | Holds the protected treasury & token, locks the safety constitution, & executes ONLY on an ALLOW verdict |
-| CircuitGate | `0x78A9C3FaFbF44fF56D6b6a3dCC008b08Fea9DDC3` | Decodes the action, fetches evidence, runs the four checks, reaches consensus on the verdict |
+| CircuitExecutor | `0xC78ce2f5a6387FeA9694b0064e6467437831913B` | Holds the protected treasury & token, locks the safety constitution, & executes ONLY on an ALLOW verdict, re-enforcing the locked policy itself before it moves value |
+| CircuitGate | `0xcA5f9159ff37c4089131f9EA85C030167D6b947e` | Decodes the action, fetches evidence, runs the four checks, reaches consensus on the verdict |
 
 Both are Python Intelligent Contracts.
 
@@ -131,7 +131,7 @@ Circuit also composes naturally with proposal-evaluation tools. A platform like 
 ## Honest limitations (V1)
 
 - **Policy firewall, not a threat oracle.** Circuit judges actions against locked policy & real state, not address reputation. Reputation scoring is out of scope in V1.
-- **Relayed execution.** In V1 the protocol owner relays an ALLOW verdict to the executor. Fully trustless automatic execution is the V2 target. The verdict itself is produced by consensus.
+- **Relayed execution.** The protocol owner relays an ALLOW verdict to the executor. The trust here is narrow: before it moves any value, the executor independently re-enforces the deterministic policy (transfer cap, approved list, parameter bound) from its own locked constitution, so a relayed ALLOW cannot push an out-of-policy action through. The owner is trusted only to relay verdicts that consensus actually produced; fully trustless automatic execution is the next target.
 - **Mock protected target.** The treasury & parameter here are a stand-in protocol. Real-protocol integration is V2.
 - **Static proposal pages.** The referenced proposal must be a stable page so every validator fetches identical text for consensus.
 - **Single-wallet browser.** Multiple injected wallets (MetaMask plus others) can clash on the wallet connection. A browser with only MetaMask avoids it.
