@@ -48,9 +48,9 @@ class CircuitGate(gl.Contract):
         approved_destinations_json: str,
     ) -> str:
         if proposal_url.strip() == "":
-            raise gl.UserError("proposal_url required for the calldata-vs-proposal check")
+            raise gl.vm.UserError("proposal_url required for the calldata-vs-proposal check")
         if kind != "transfer" and kind != "param_change":
-            raise gl.UserError("kind must be transfer or param_change")
+            raise gl.vm.UserError("kind must be transfer or param_change")
 
         case_id = "circuit_" + str(int(self.verdict_counter))
 

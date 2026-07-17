@@ -1,12 +1,12 @@
 import { readContract, writeContract } from "./genlayer";
 
 // --- deployed Circuit contracts (GenLayer Studio, chainId 61999) ---
-export const EXECUTOR_ADDRESS = "0xd8d0A423992D90fc2521B846d5ED83C1294B280b";
-export const GATE_ADDRESS = "0x78A9C3FaFbF44fF56D6b6a3dCC008b08Fea9DDC3";
+export const EXECUTOR_ADDRESS = "0xC78ce2f5a6387FeA9694b0064e6467437831913B";
+export const GATE_ADDRESS = "0xcA5f9159ff37c4089131f9EA85C030167D6b947e";
 
 // ---------- token ----------
-export async function mint(toAddress: string, amount: number) {
-  return writeContract(EXECUTOR_ADDRESS, "mint", [toAddress, amount]);
+export async function mint(caller: string, toAddress: string, amount: number) {
+  return writeContract(EXECUTOR_ADDRESS, "mint", [caller, toAddress, amount]);
 }
 
 export async function balanceOf(address: string): Promise<number> {
