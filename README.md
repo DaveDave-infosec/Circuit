@@ -128,11 +128,11 @@ Circuit also composes naturally with proposal-evaluation tools. A platform like 
 
 ---
 
-## Honest limitations (V1)
+## Honest limitations
 
-- **Policy firewall, not a threat oracle.** Circuit judges actions against locked policy & real state, not address reputation. Reputation scoring is out of scope in V1.
+- **Policy firewall, not a threat oracle.** Circuit judges actions against locked policy & real state, not address reputation. Reputation scoring is out of scope for this release.
 - **Relayed execution.** The protocol owner relays an ALLOW verdict to the executor. The trust here is narrow: before it moves any value, the executor independently re-enforces the deterministic policy (transfer cap, approved list, parameter bound) from its own locked constitution, so a relayed ALLOW cannot push an out-of-policy action through. The owner is trusted only to relay verdicts that consensus actually produced; fully trustless automatic execution is the next target.
-- **Mock protected target.** The treasury & parameter here are a stand-in protocol. Real-protocol integration is V2.
+- **Mock protected target.** The treasury & parameter here are a stand-in protocol. Real-protocol integration is a natural next step.
 - **Static proposal pages.** The referenced proposal must be a stable page so every validator fetches identical text for consensus.
 - **Single-wallet browser.** Multiple injected wallets (MetaMask plus others) can clash on the wallet connection. A browser with only MetaMask avoids it.
 
