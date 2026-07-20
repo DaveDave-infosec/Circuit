@@ -4,20 +4,26 @@ import { StatusBar } from "./components/StatusBar";
 import { Flow } from "./components/Flow";
 import { CaseLog } from "./components/CaseLog";
 import { Guide } from "./components/Guide";
+import { Landing } from "./components/Landing";
 
 export default function App() {
   const { address, mode, connectMetaMask, useDemo, disconnect } = useWallet();
   const [refreshKey, setRefreshKey] = useState(0);
   const [owner, setOwner] = useState<string | null>(null);
   const [tab, setTab] = useState<"console" | "guide">("console");
+  const [view, setView] = useState<"landing" | "app">("landing");
 
   const bumpRefresh = useCallback(() => setRefreshKey((k) => k + 1), []);
   const isOwner = !!address && !!owner && address.toLowerCase() === owner.toLowerCase();
 
+  if (view === "landing") {
+    return <Landing onEnter={() => setView("app")} />;
+  }
+
   return (
     <main className="shell-wide">
       <header className="topbar">
-        <div>
+        <div className="topbar-brand" onClick={() => setView("landing")}>
           <div className="armed-line" />
           <span className="status">CIRCUIT ARMED</span>
           <h1 className="wordmark-sm">Circuit</h1>
